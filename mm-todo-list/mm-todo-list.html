@@ -1,18 +1,9 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../output/mm-button.html">
-<link rel="import" href="../output/mm-checkbox.html">
-<link rel="import" href="../output/mm-input.html">
-<link rel="import" href="../output/mm-action.html">
-<link rel="import" href="../output/mm-icon.html">
-<link rel="import" href="../output/fonts.html">
-
-
 <polymer-element name="mm-todo-list" attributes="width">
-	<template id="mainTemp">
+	<template id="mainTemp" class="mainT"> <!-- This is the main template which has all sub-templates to run the todo list --> 
 		<link href="mm-todo-list.css" rel="stylesheet" type="text/css"/>
-			<div id="mainTodo" style="width:{{width}}px;">
-				<div id="inputContainer" >
-					<template id="mainContainer" bind>
+		<div id="mainTodo" style="width:{{width}}px;" class="appTodo">
+			<div id="inputContainer">
+				<template id="mainContainer" bind> <!-- This template deals with the input the user gives and adds them to the todo list -->
 					<div class="left-checkbox">
 						<mm-checkbox id="toggleCheck" checked="{{checked}}" on-click="{{allCheck}}"></mm-checkbox>
 					</div>
@@ -24,14 +15,14 @@
 							<label>Add Item</label>
 						</mm-button>
 					</div>
-					</template>
-				</div>
+				</template>
+			</div>
 			<div id="itemContainer">
-				<template id="todoList"  repeat="{{todoItemsVisible}}">
-					<div class="iteminfo" data-id="{{id}}" >
+				<template id="todoList"  repeat="{{items}}"> <!-- This template takes care of all the items in the list and how the various operations performed on the list items -->
+					<div class="iteminfo" data-id="{{id}}">
 						<mm-checkbox class="itemschk" id="chk{{id}}" checked="{{checked}}" on-click="{{editFooter}}" data-id="{{id}}">
 						</mm-checkbox>
-						<span id="it{{id}}" class="itemName {{ { completedItem:checked==true } | tokenList}}" on-dblclick="{{editable}}" data-id="{{id}}" on-keypress="{{endEdit}}" title="{{item}}">{{item}}</span>
+						<span id="{{id}}" class="itemName {{ { completedItem:checked==true } | tokenList}}" on-dblclick="{{editable}}" data-id="{{id}}" on-keypress="{{endEdit}}" on-blur="{{saveEdit}}" title="{{item}}">{{item}}</span>
 						<div class="closeButton">
 							<mm-icon class="itemsclose" type="fail" width="15" height="15" primaryColor="#787878" data-id="	{{id}}" on-click="{{delItem}}">
 							</mm-icon>
@@ -40,7 +31,7 @@
 				</template>
 			</div>
 			<div id="appFooter">
-				<template id="footer" bind>
+				<template id="footer" bind> <!-- This is the template for footer where all the details of the list are displayed and to move between 'All' 'Active' and 'Completed' items. -->
 					<div id="itemsLeft">
 						<span style="font-weight:bold;">{{todoItemsRemaining}}</span>
 						<span>items left</span>
