@@ -1,0 +1,61 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../output/mm-button.html">
+<link rel="import" href="../output/mm-checkbox.html">
+<link rel="import" href="../output/mm-input.html">
+<link rel="import" href="../output/mm-action.html">
+<link rel="import" href="../output/mm-icon.html">
+<link rel="import" href="../output/fonts.html">
+
+
+<polymer-element name="mm-todo-list" attributes="width">
+	<template id="mainTemp">
+		<link href="mm-todo-list.css" rel="stylesheet" type="text/css"/>
+			<div id="mainTodo" style="width:{{width}}px;">
+				<div id="inputContainer" >
+					<template id="mainContainer" bind>
+					<div class="left-checkbox">
+						<mm-checkbox id="toggleCheck" checked="{{checked}}" on-click="{{allCheck}}"></mm-checkbox>
+					</div>
+					<div class="center">
+						<mm-input id="newItem" placeholder="Add your items here" clear="true" fitparent on-keyup="{{pressEnter}}"></mm-input>
+					</div>
+					<div class="right-button">
+						<mm-button id="addItem" on-click="{{addClicked}}">
+							<label>Add Item</label>
+						</mm-button>
+					</div>
+					</template>
+				</div>
+			<div id="itemContainer">
+				<template id="todoList"  repeat="{{todoItemsVisible}}">
+					<div class="iteminfo" data-id="{{id}}" >
+						<mm-checkbox class="itemschk" id="chk{{id}}" checked="{{checked}}" on-click="{{editFooter}}" data-id="{{id}}">
+						</mm-checkbox>
+						<span id="it{{id}}" class="itemName {{ { completedItem:checked==true } | tokenList}}" on-dblclick="{{editable}}" data-id="{{id}}" on-keypress="{{endEdit}}" title="{{item}}">{{item}}</span>
+						<div class="closeButton">
+							<mm-icon class="itemsclose" type="fail" width="15" height="15" primaryColor="#787878" data-id="	{{id}}" on-click="{{delItem}}">
+							</mm-icon>
+						</div>
+					</div>
+				</template>
+			</div>
+			<div id="appFooter">
+				<template id="footer" bind>
+					<div id="itemsLeft">
+						<span style="font-weight:bold;">{{todoItemsRemaining}}</span>
+						<span>items left</span>
+					</div>
+					<div id="footerActions">
+						<mm-action underline= "true" style="margin-right:15px;" on-click="{{showAll}}"><label>All</label></mm-action>
+						<mm-action underline= "true" style="margin-right:15px;" on-click="{{showUnchecked}}"><label>Active</label></mm-action>
+						<mm-action underline= "true" on-click="{{showCompleted}}"><label>Completed</label></mm-action>
+					</div>
+					<div id="clearCompleted">
+						<mm-button type="secondary" on-click="{{clearCompleted}}"><label>Clear Completed ({{todoItemsCompleted}})</label></mm-button>
+					</div> 
+				</template>
+			</div>
+		</div>
+	</template>
+	<script src="mm-todo-list.js"></script>
+</polymer-element>
