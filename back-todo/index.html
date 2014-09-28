@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BACKBONE TODO</title>
+	<script language="javascript" src="//wc.mediamath.com/loader.js?p=compass"></script>
+	<link rel="import" href="//wc.mediamath.com/index.html"/>	
+<body background="background.jpg">
+	<link rel="stylesheet" type="text/css" href="back-todo.css"></link>
+	<h1 align="center" style="text-shadow: 4px 4px 3px #C7C7C7; color:#666">ToDo List</h1>
+	<div class="mainContainer">
+		<div class="inputContainer">
+			<mm-checkbox class="left-checkbox" id="toggleCheck"></mm-checkbox>
+			<mm-input class="center" id="todoItem" placeholder="Add your item here" clear="true"></mm-input>
+			<mm-button class="right-button" id="addItem"><label>Add Item</label></mm-button>
+		</div>
+		<div id="itemContainer"></div>    
+		<div class="todoFooter"></div>    
+	</div>
+	<p align="center" style="text-shadow: 4px 4px 3px #C7C7C7; color:#666">Double click to edit a ToDo Item</p>
+	<script type="text/template" id="todo-list-template">
+		<% _.each(items, function(item,checked) { %>
+			<div id="itemInfo">
+				<mm-checkbox id="itemCheck<%= item.get('id')%>" data-id=<%= item.cid%> checked= <%= item.get('checked')%> ></mm-checkbox>
+				<span class= "<%=item.get('checked') ? 'completedItem': 'itemName'%>" data-id=<%=item.cid%>><%= item.get('name')%></span>
+				<mm-icon class="itemDestroy" type="fail" width="15" height="15" primaryColor="#787878" data-id=<%= item.cid%>></mm-icon>
+			</div>
+		<%});%>	
+	</script>
+	<script type="text/template" id="todo-footer-template">
+		<div id="appFooter">
+		<div id="itemsLeft">
+			<span id="itemLeft"style="font-weight:bold;"><%=remainingItems%></span>
+			<span> items left</span>
+		</div>
+		<div id="footerActions">
+			<mm-action id="allItems" underline= "true" style="margin-right:15px;" href="#/all"><label>All</label></mm-action>
+			<mm-action id="activeList" underline= "true" style="margin-right:15px;" href="#/active"><label>Active</label></mm-action>
+			<mm-action id="completedList"underline= "true" href="#/completed"><label>Completed</label></mm-action>
+		</div>
+		<div id="clearCompleted">
+			<mm-button  type="secondary"><label id="clearButton">Clear Completed (<%=checkedItems%>)</label></mm-button>
+		</div>
+		</div> 
+	</script>
+	<script src="bower_components/jquery/jquery.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/backbone/backbone.js"></script>
+	<script src="back-todo.js"></script>
+</body>
+</html>

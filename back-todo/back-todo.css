@@ -1,0 +1,109 @@
+
+.mainContainer {
+	border: 1px solid;
+	background:#FFFFFF;
+	margin: auto;
+	width:500px;
+	box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.18);
+	border-radius:4px;
+	border-color: #C8C8C8 ;
+	overflow:hidden;
+	font-family: 'Arimo', sans-serif;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 15px;	
+}
+
+.inputContainer {
+	display: flex;
+	padding: 15px;
+	border-bottom: 1px solid;
+	border-color: #C8C8C8;
+}
+
+.left-checkbox {
+	display: inline-block;
+	width: 18px;
+	margin-right: 10px;
+	margin-top : 5px;
+}
+
+.center {
+	width: calc(100% - 118px);
+	display: inline-block;
+}
+
+.right-button {
+	width: 80px;
+	margin-left : 10px;
+	display: inline-block;
+}
+.itemContainer {
+	width: 100%;	
+}
+
+#itemInfo {
+	display: block;
+	border-bottom: 1px solid;
+	border-color: #00CCFF;
+	overflow: hidden;
+	padding: 5px 15px;
+	text-overflow: ellipsis;	
+}
+
+#itemInfo.last-child{
+	border-bottom: none;
+}
+
+.itemName {
+	margin-left: 5px;
+	margin-top:  5px;
+	line-height: 15px;
+	font-style: italic;	
+}
+
+.completedItem {
+	text-decoration: line-through;
+	margin-left: 5px;
+	margin-top:  5px;
+	line-height: 15px;
+	font-style: italic;
+}
+
+.itemDestroy {
+	display: none;
+}
+
+#itemInfo:hover .itemDestroy {
+	display: inline-block;
+	float: right;
+	margin-top: 2px;
+}
+
+#itemInfo:hover {
+	background: #FFFFCC;
+}
+
+#appFooter {
+	display: flex;
+	padding: 15px;
+	border-top: 1px solid;
+	background: #EEE ;
+	border-color: #C8C8C8 ;
+}
+
+#itemsLeft {
+	margin-top: 6px;
+	display: inline-block;
+}
+
+#footerActions {
+	margin: 0 auto;
+	display: inline-block;
+	align: center;
+	margin-top: 6px;
+}
+
+#clearCompleted {
+	display: inline-block;
+}
