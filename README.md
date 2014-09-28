@@ -4,5 +4,6 @@ Myrepo
 Contents
 =========
 
-1.mm-todo-list
-2.Todo List using Backbone
+ 1) Todo List using mm components.
+
+ 2) Todo List using Backbone.
