@@ -150,11 +150,13 @@ var ItemList = Backbone.View.extend({
 	saveEdit: function(e){
 		var editId = e.target.dataset.id;
 		var i = items.length;
+
 			while(i--){
 				if(items.models[i].cid == editId){
 				items.models[i].attributes.name = e.target.innerHTML;
 				}
 			}
+
 		e.target.contentEditable="false";
 		console.log('saved');	
 	},
@@ -162,11 +164,13 @@ var ItemList = Backbone.View.extend({
 	deleteTodo: function(e){
 		var delId = e.target.dataset.id;
 		var i = items.length;
+
 		while(i--){
 			if(items.models[i].cid == delId){
 				items.remove(items.at(i));	
 			}
 		}
+		
 		footer.render();
 		this.toggleState();
 		router.navigate('#/all' , {trigger: true});	
