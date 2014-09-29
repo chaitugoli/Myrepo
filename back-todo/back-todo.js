@@ -78,7 +78,8 @@ var ItemList = Backbone.View.extend({
 		}
 
 		footer.render();
-		itemList.render();	
+		itemList.render();
+		router.navigate('#/all' , {trigger: true});	
 	},
 
 	toggleState: function(){
@@ -134,6 +135,7 @@ var ItemList = Backbone.View.extend({
 		footer.render();
 		this.toggleState();
 		todoName.val("");
+		router.navigate('#/all' , {trigger: true});
 	},
 
 	enableEdit: function(e){
@@ -165,9 +167,9 @@ var ItemList = Backbone.View.extend({
 				items.remove(items.at(i));	
 			}
 		}
-		itemList.render();
 		footer.render();
 		this.toggleState();
+		router.navigate('#/all' , {trigger: true});	
 	}
 });
 
@@ -192,7 +194,7 @@ var FooterTodo = Backbone.View.extend({
 		var completeTodo = _.filter(items.models,function(model){return model.attributes.checked});
 		items.remove(completeTodo);
 		footer.render();
-		itemList.render();
+		router.navigate('#/all' , {trigger: true});
 		this.event_aggregator.trigger("toggleState");
 	}
 });
