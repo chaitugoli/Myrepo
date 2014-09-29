@@ -1,4 +1,4 @@
- 2) ToDo - List (Backbone Version)
+ 2) ToDo - List (Backbone.js Version)
 ===================================
 
  This is a Backbone Version of Todo-list made using the web components of Mediamath.
