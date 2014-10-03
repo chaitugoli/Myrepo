@@ -22,14 +22,16 @@ Polymer('mm-todo-list', {
 	createItem: function() {
 		var input = this.$.newItem.value;
 
-		if (input === "" || input === " ") {
-			return false; 
+		if(input.trim().length > 0) {
+			this.totalItems++;
+			this.todoItemsAll.push({id:this.totalItems,item:input});
+			this.$.newItem.clearInput();
+			this.type = "all";
+		}
+		else{
+			this.$.newItem.clearInput();
 		}
 
-		this.totitems++;
-		this.todoItemsAll.push({id:this.totitems,item:input});
-		this.$.newItem.clearInput();
-		this.type = "all";
 		this.async(function(){
 			this.editFooter();
 		});
