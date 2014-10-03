@@ -14,11 +14,6 @@ Polymer('mm-todo-list', {
 	computed: {
 		items: "itemFilter(todoItemsAll, type, todoItemsAll.length)"
 	},
-
-	ready: function() {
-		this.itemObserver = new ArrayObserver(this.todoItemsAll);
-		this.itemObserver.open(this.newItemHandler.bind(this));
-	},
 	
 	newItemHandler: function(changes) {
 		this.todoItemsRemaining = this.remainingItems(this.todoItemsAll).length;
