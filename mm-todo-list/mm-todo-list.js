@@ -106,15 +106,20 @@ Polymer('mm-todo-list', {
 	saveEdit: function(e){
 		var editId = e.target.dataset.id;
 		var i = this.todoItemsAll.length;
-		
+		var changedItem = e.target.innerHTML;
+
 		while(i--){
 			if( this.todoItemsAll[i].id == editId){
-				this.todoItemsAll[i].item = e.target.innerHTML;
+				this.todoItemsAll[i].item = changedItem;
 			}
 		}
-		
+
 		e.target.contentEditable = "false";
 		console.log("saved!!");
+
+		if(changedItem.length == 0 ){
+			this.deleteItem(e);
+		}
 	},
 
 	editFooter: function(e) {
