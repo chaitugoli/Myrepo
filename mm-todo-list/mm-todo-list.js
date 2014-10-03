@@ -88,6 +88,7 @@ Polymer('mm-todo-list', {
 			this.todoItemsRemaining = this.todoItemsAll.length;
 			this.todoItemsCompleted = 0 ; 
 		}
+		this.type="all";
 	},
 
 	editable: function(e) {
