@@ -132,9 +132,14 @@ var ItemView = Backbone.View.extend({
 	saveEdit: function(e){
 		var editId = e.target.dataset.id;
 		var editItem = items.get(editId);
-		editItem.set("name", e.target.innerHTML);
+		var changedItem = e.target.innerHTML;
+		editItem.set("name", changedItem);
 		e.target.contentEditable="false";
 		console.log('saved');	
+		
+		if(changedItem.length== 0 ){
+			this.deleteTodo(e);
+		}
 	}
 });
 
