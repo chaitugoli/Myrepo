@@ -92,22 +92,12 @@ var ItemView = Backbone.View.extend({
 		var chkid = e.target.dataset.id;
 		var itemChecked = e.target.checked;
 
-		if(itemChecked){
-			var i = items.length;
-			while(i--){
-				if(items.models[i].cid == chkid){
-					items.models[i].set('checked' , itemChecked);
-				}
+		items.each( function(model){
+			if(model.cid == chkid){
+				model.set("checked", itemChecked);
 			}
-		}
-		else{
-			var i = items.length;
-			while(i--){
-				if(items.models[i].cid == chkid){
-					items.models[i].set('checked' ,itemChecked);
-				}
-			}
-		}
+		});
+
 		router.navigate('#/all' , {trigger: true});
 
 	},
