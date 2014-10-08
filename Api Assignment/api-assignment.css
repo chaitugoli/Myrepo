@@ -1,0 +1,31 @@
+#gridItem {
+
+	display: inline-block;
+	width: 870px;
+}
+
+.agenDrop {
+	display: inline-block;
+	width: 200px;
+}
+
+table{
+	border: 1px solid black;
+}
+th{
+	border-bottom: 1px solid black;
+}
+th, td {
+	padding: 5px;
+}
+tr {
+	border : 1px solid black;
+}
+#gridTable{
+	margin: 15px;
+	width:800px;
+}
+#campSave {
+	padding:10px; 
+	float: right;
+}
