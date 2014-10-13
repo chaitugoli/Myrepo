@@ -1,0 +1,57 @@
+<polymer-element name="ajax-test">
+	<template>
+	<link href="api-assignment.css" rel="stylesheet" type="text/css"/>
+			<mm-ajax id="a1" url="{{url}}" auto response="{{response}}" method="GET"></mm-ajax>
+			<mm-ajax id="a2" url="{{urladv}}" auto response="{{responseAdv}}" method="GET"></mm-ajax>
+			<mm-ajax id="a3" url="{{urlcam}}" auto response="{{responseCam}}" method="GET"></mm-ajax>
+		<template id="dropdown" bind>
+			<div class="agenDrop">
+				<label>Agency</label>
+				<mm-dropdown id="agenciesDrop" fitparent="true" value="{{agencySelected}}" placeholder="Select Agency" on-changed="{{dropChange}}" >
+					<template id="agencyNames" repeat="{{agencies}}">
+					<mm-list-item>{{name}}</mm-list-item>
+					</template>
+				</mm-dropdown>
+				<label>Advertiser</label>
+				<mm-dropdown id="advList" fitparent="true" placeholder="Select Advertiser">
+					<template id="advertiserNames" repeat="{{advNames}}" >
+					<mm-list-item>{{name}}</mm-list-item>
+					</template>
+				</mm-dropdown>
+				<mm-button id="getCampaigns"on-click="{{getCamp}}"><label>Get Campaigns</label></mm-button>
+			</div>
+		</template>	
+		<template bind>
+			<div id="gridTable" hidden = "true" >
+				<table>
+					<tr>
+						<th><mm-checkbox id="toggleAllCheck" on-click="{{checkAll}}"></mm-checkbox></th>
+						<th>Campaign Name</th>
+						<th>Status</th>
+						<th>Budget</th>
+						<th>Start Date</th>
+						<th>End Date</th>   
+					</tr>
+					<template repeat="{{campNames}}">
+						<tr>
+							<td><mm-checkbox checked="{{checked}}" data-id="{{_id}}" on-click="{{toggleCheck}}"></mm-checkbox></td>
+							<td><mm-input id="nameField" value="{{name}}" data-id="{{_id}}"></mm-textarea></td>
+							<td>
+								<mm-dropdown placeholder="status" data-id="{{_id}}" changed="{{getAdv}}">
+									<mm-list-item>active</mm-list-item>
+									<mm-list-item>inactive</mm-list-item>
+								</mm-dropdown>
+							</td>
+							<td><mm-input id="budgetField" value="$ {{budget}}" data-id="{{_id}}"></mm-input></td>
+							<td><mm-input id="startDatePicker" value="{{startDate}}" data-id="{{_id}}"></mm-input></td>
+							<td><mm-input id="endDatePicker" value="{{endDate}}" data-id="{{_id}}"></mm-input></td>
+						</tr>
+					</template>
+				</table>
+				<mm-button id="campSave" on-click="{{saveCampaign}}"><label>Save</label></mm-button>
+			</div>
+			
+		</template>	
+	</template>
+<script type="text/javascript" src="api.js"></script>  
+</polymer-element>
