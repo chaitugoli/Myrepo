@@ -136,12 +136,14 @@
 		if(this.$.toggleAllCheck.checked === true) {
 			while (i--) {
 				this.campNames[i].checked = true;
+				this.$.campSave.disabled = false;
 			}
 		}
 
 		if(this.$.toggleAllCheck.checked === false) {
 			while (i--) {
 				this.campNames[i].checked = false;
+				this.$.campSave.disabled = true;
 			}
 		}
 	},
