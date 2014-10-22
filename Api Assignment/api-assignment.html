@@ -1,59 +1,58 @@
 <polymer-element name="ajax-test">
 	<template>
-	<link href="api-assignment.css" rel="stylesheet" type="text/css"/>
-	<link rel="import" href="mm-ajax/mm-ajax.html">
-			<mm-ajax id="a1" url="{{url}}" auto response="{{response}}" method="GET"></mm-ajax>
-			<mm-ajax id="a2" url="{{urladv}}" auto response="{{responseAdv}}" method="GET"></mm-ajax>
-			<mm-ajax id="a3" url="{{urlcam}}" auto response="{{responseCam}}" method="GET"></mm-ajax>
-			<mm-ajax id="a4" url="http://challenge.mediamath.com/api/campaigns/{{campID}}?api_token=dd88982667b3ec6896d6a3a50d80efa3faea6923" method="POST"></mm-ajax>
+		<link href="api-assignment.css" rel="stylesheet" type="text/css"/>
+		<link rel="import" href="mm-ajax/mm-ajax.html">
+		<mm-ajax id="a1" url="http://challenge.mediamath.com/api/agencies?api_token=dd88982667b3ec6896d6a3a50d80efa3faea6923" auto response="{{response}}" method="GET"></mm-ajax>
+		<mm-ajax id="a2" url="http://challenge.mediamath.com/api/advertisers?api_token=dd88982667b3ec6896d6a3a50d80efa3faea6923" auto response="{{responseAdv}}" method="GET"></mm-ajax>
+		<mm-ajax id="a3" url="http://challenge.mediamath.com/api/campaigns?api_token=dd88982667b3ec6896d6a3a50d80efa3faea6923" auto response="{{responseCam}}" method="GET"></mm-ajax>
 		<template id="dropdown" bind>
 			<div class="agenDrop">
 				<label>Agency</label>
-				<mm-dropdown id="agenciesDrop" fitparent="true" value="{{agencySelected}}" placeholder="Select Agency" on-changed="{{getAdv}}" >
+				<mm-dropdown id="agenciesDrop" fitparent="true" value="{{agencySelected}}" placeholder="Select Agency" on-changed="{{getAdv}}">
 					<template id="agencyNames" repeat="{{agencies}}">
-					<mm-list-item>{{name}}</mm-list-item>
+						<mm-list-item>{{name}}</mm-list-item>
 					</template>
 				</mm-dropdown>
 				<label>Advertiser</label>
-				<mm-dropdown id="advList" fitparent="true" placeholder="Select Advertiser">
+				<mm-dropdown id="advList" fitparent="true" placeholder="Select Advertiser" on-click="{{getAdv}}">
 					<template id="advertiserNames" repeat="{{advNames}}" >
-					<mm-list-item>{{name}}</mm-list-item>
+						<mm-list-item>{{name}}</mm-list-item>
 					</template>
 				</mm-dropdown>
 				<mm-button id="getCampaigns"on-click="{{getCamp}}"><label>Get Campaigns</label></mm-button>
 			</div>
 		</template>	
-		<template bind>
-			<div id="gridTable" hidden = "true" >
-				<table>
-					<tr>
-						<th><mm-checkbox id="toggleAllCheck" on-click="{{checkAll}}"></mm-checkbox></th>
-						<th>Campaign Name</th>
-						<th>Status</th>
-						<th>Budget($)</th>
-						<th>Start Date</th>
-						<th>End Date</th>   
-					</tr>
-					<template repeat="{{campNames}}">
+			<template bind>
+				<div id="gridTable" hidden = "true" >
+					<table>
 						<tr>
-							<td><mm-checkbox checked="{{checked}}" data-id="{{_id}}" on-click="{{toggleCheck}}"></mm-checkbox></td>
-							<td><mm-input id="nameField" value="{{name}}" data-id="{{_id}}"></mm-textarea></td>
-							<td>
-								<mm-dropdown id="statusdrop" placeholder="status" data-id="{{_id}}"  on-changed="{{changeStatus}}" value="{{campStatus}}">
-									<mm-list-item>active</mm-list-item>
-									<mm-list-item>inactive</mm-list-item>
-								</mm-dropdown>
-							</td>
-							<td><mm-input id="budgetField" value="{{budget}}" data-id="{{_id}}"></mm-input></td>
-							<td><mm-input id="startDatePicker" value="{{startDate}}" data-id="{{_id}}"></mm-input></td>
-							<td><mm-input id="endDatePicker" value="{{endDate}}" data-id="{{_id}}"></mm-input></td>
+							<th><mm-checkbox id="toggleAllCheck" on-click="{{checkAll}}"></mm-checkbox></th>
+							<th>Campaign Name</th>
+							<th>Status</th>
+							<th>Budget($)</th>
+							<th>Start Date</th>
+							<th>End Date</th>   
 						</tr>
-					</template>
-				</table>
-				<mm-button id="campSave" on-click="{{saveCampaign}}"><label>Save</label></mm-button>
-			</div>
-			
-		</template>	
+						<template repeat="{{campNames}}">
+							<tr>
+								<td><mm-checkbox checked="{{checked}}" data-id="{{_id}}" on-click="{{toggleCheck}}"></mm-checkbox></td>
+								<td><mm-input id="nameField" value="{{name}}" data-id="{{_id}}"></mm-textarea></td>
+								<td>
+									<mm-dropdown id="statusdrop" placeholder="status" data-id="{{_id}}"  on-changed="{{changeStatus}}" value="{{campStatus}}">
+										<mm-list-item>active</mm-list-item>
+										<mm-list-item>inactive</mm-list-item>
+									</mm-dropdown>
+								</td>
+								<td><mm-input id="budgetField" value="{{budget}}" data-id="{{_id}}"></mm-input></td>
+								<td><mm-input id="startDatePicker" value="{{startDate}}" data-id="{{_id}}"></mm-input></td>
+								<td><mm-input id="endDatePicker" value="{{endDate}}" data-id="{{_id}}"></mm-input></td>
+							</tr>
+						</template>
+					</table>
+					<mm-button id="campSave" on-click="{{saveCampaign}}"><label>Save</label></mm-button>
+				</div>	
+			</template>	
+			<p align="center" id="footerInfo" style="text-shadow: 4px 4px 6px #C7C7C7; color:#666" hidden="true">Please select the Campaigns you want to save</p>
 	</template>
 <script type="text/javascript" src="api.js"></script>  
 <script src="jquery.js"></script>
